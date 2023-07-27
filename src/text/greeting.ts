@@ -16,6 +16,7 @@ const greeting = () => async (ctx: Context) => {
 
   if (messageId) {
     await replyToMessage(ctx, messageId, `Hello, ${userName}!`);
+    await replyToMessage(ctx, messageId, `i am bot!`);
   }
 };
 
