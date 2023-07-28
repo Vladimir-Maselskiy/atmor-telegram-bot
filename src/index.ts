@@ -12,6 +12,7 @@ const bot = new Telegraf(BOT_TOKEN);
 
 bot.command('about', about());
 bot.on('message', greeting());
+console.log("bot", bot)
 
 //prod mode (Vercel)
 export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
