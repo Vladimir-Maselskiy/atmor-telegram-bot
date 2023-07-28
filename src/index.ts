@@ -1,4 +1,4 @@
-import { Telegraf } from 'telegraf';
+import { Telegraf, Markup, Context } from 'telegraf';
 
 import { about } from './commands';
 import { greeting } from './text';
@@ -8,6 +8,15 @@ import { production } from './core';
 const BOT_TOKEN = process.env.BOT_TOKEN || '';
 
 const bot = new Telegraf(BOT_TOKEN);
+
+function createPersistentMenu(ctx: Context) {
+  const menuButtons = Markup.keyboard([['/start', '/about']]).resize();
+  ctx.reply('Welcome! Please enter your text:', menuButtons);
+}
+
+bot.start(ctx => {
+  createPersistentMenu(ctx);
+});
 
 bot.command('about', about());
 bot.on('message', greeting());
