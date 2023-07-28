@@ -21,8 +21,8 @@
     "typescript": "^5.1.3"
   },
   "scripts": {
-    "dev": "dotenv -- nodemon -e ts -x ts-node src/index.ts",
-    "devWindows": "@powershell -Command $env:DEBUG='bot*';dotenv -- -- nodemon -e ts -x ts-node src/index.ts",
+    "devMac": "dotenv -- nodemon -e ts -x ts-node src/index.ts",
+    "dev": "@powershell -Command $env:DEBUG='bot*';dotenv -- -- nodemon -e ts -x ts-node src/index.ts",
     "build": "ncc build src/index.ts -o public -m",
     "prettier": "prettier --write 'src/**/*.ts'"
   }
