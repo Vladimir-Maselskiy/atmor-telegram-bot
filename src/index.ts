@@ -1,20 +1,24 @@
 import { Telegraf, Markup, Context } from 'telegraf';
 
 import { about, signIn } from './commands';
-import { greeting } from './text';
+import { message } from './messages';
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import { production } from './core';
+import { development, production } from './core';
 import { COMMANDS } from './const/commands';
 
 const BOT_TOKEN = process.env.BOT_TOKEN || '';
+const ENVIRONMENT = process.env.NODE_ENV || '';
 
 const bot = new Telegraf(BOT_TOKEN);
 
 bot.command('signin', signIn());
-bot.on('message', greeting());
-console.log('bot', bot);
+bot.command('logout', logOut());
+bot.on('message', message());
 
 //prod mode (Vercel)
 export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
   await production(req, res, bot);
 };
+
+//dev mode
+ENVIRONMENT !== 'production' && development(bot);

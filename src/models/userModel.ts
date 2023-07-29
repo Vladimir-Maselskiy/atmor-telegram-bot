@@ -19,11 +19,6 @@ const userSchema = new Schema(
     userName: {
       type: String || undefined,
     },
-
-    isActive: {
-      type: Boolean,
-      required: [true, 'isActive is required'],
-    },
   },
   { versionKey: false, timestamps: true }
 );

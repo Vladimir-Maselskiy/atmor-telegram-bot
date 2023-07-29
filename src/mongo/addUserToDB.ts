@@ -1,8 +1,12 @@
 import { Context } from 'telegraf';
 import { connectMongo } from './connectMongo';
 import { User } from '../models/userModel';
+import { TUserForMongoDB } from '../interfaces/userForMongo';
+import { getUserForDBFromCtx } from './getUserForDBFromCtx';
 
-export const findOne = async (ctx: Context) => {
+export const addUserToDB = async (
+  ctx: Context
+): Promise<TUserForMongoDB | undefined> => {
   try {
     await connectMongo();
     const { message } = ctx;
@@ -10,8 +14,9 @@ export const findOne = async (ctx: Context) => {
       const { from } = message;
       const { id: userID } = from;
       const user = await User.findOne({ userID });
-      if (!user) return undefined;
-      return user;
+      if (user) return;
+      const newUser = await User.create(getUserForDBFromCtx(ctx));
+      console.log('newUser', newUser);
     }
   } catch (error) {
     console.log(error);

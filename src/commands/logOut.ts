@@ -1,10 +1,10 @@
 import { Context } from 'telegraf';
 import { findOne } from '../mongo/findOne';
 
-const signIn = () => async (ctx: Context) => {
-  const user = await findOne(ctx);
+export const logOut = () => async (ctx: Context) => {
+  const user = await DeleteUser(ctx);
   if (user) {
-    await ctx.reply('Підписка вже налаштована');
+    await ctx.reply('Підписку скасовано');
     return;
   }
   await ctx.reply('Enter password:', {
@@ -13,5 +13,3 @@ const signIn = () => async (ctx: Context) => {
     },
   });
 };
-
-export { signIn };
