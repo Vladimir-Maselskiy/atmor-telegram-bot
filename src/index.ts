@@ -1,6 +1,6 @@
 import { Telegraf, Markup, Context } from 'telegraf';
 
-import { about } from './commands';
+import { about, signIn } from './commands';
 import { greeting } from './text';
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { production } from './core';
@@ -10,8 +10,7 @@ const BOT_TOKEN = process.env.BOT_TOKEN || '';
 
 const bot = new Telegraf(BOT_TOKEN);
 
-bot.telegram.setMyCommands(COMMANDS);
-bot.command('about', about());
+bot.command('signin', signIn());
 bot.on('message', greeting());
 console.log('bot', bot);
 
