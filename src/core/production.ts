@@ -1,6 +1,7 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { Context, Telegraf } from 'telegraf';
 import { Update } from 'telegraf/typings/core/types/typegram';
+import { sendMessageFromSite } from '../messages';
 
 const VERCEL_URL = `${process.env.VERCEL_URL}`;
 
@@ -22,10 +23,12 @@ const production = async (
   }
 
   if (req.method === 'POST') {
-    const { fromSite } = JSON.parse(req.body);
+    const body = JSON.parse(req.body);
+    const { fromSite, message } = body;
 
     if (fromSite === true) {
-      bot.telegram.sendMessage(915873774, JSON.stringify(req.body));
+      sendMessageFromSite(bot, body);
+      bot.telegram.sendMessage(915873774, message);
     } else {
       await bot.handleUpdate(req.body as unknown as Update, res);
     }
