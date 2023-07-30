@@ -5,7 +5,7 @@ import { sendMessageFromSite } from '../messages';
 
 const VERCEL_URL = `${process.env.VERCEL_URL}`;
 
-const production = async (
+export const production = async (
   req: VercelRequest,
   res: VercelResponse,
   bot: Telegraf<Context<Update>>
@@ -34,9 +34,8 @@ const production = async (
       console.log('req.body', req.body);
       await bot.handleUpdate(req.body as unknown as Update, res);
     }
-    res.status(200).json(req.body);
+    // res.status(200).json(req.body);
   } else {
     res.status(200).json('Listening to bot events...');
   }
 };
-export { production };
