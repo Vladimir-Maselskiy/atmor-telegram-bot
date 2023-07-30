@@ -1,6 +1,7 @@
-import { Context, Telegraf } from "telegraf";
-import { Update } from "telegraf/typings/core/types/typegram";
+import { Context, Telegraf } from 'telegraf';
+import { Update } from 'telegraf/typings/core/types/typegram';
 
-export const sendMessageFromSite = (bot: Telegraf<Context<Update>>, body) => {
-
-}
+export const sendMessageFromSite = (
+  bot: Telegraf<Context<Update>>,
+  body: any
+) => {};
