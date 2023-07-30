@@ -52,8 +52,12 @@ export const production = async (
       const { fromSite, message }: { fromSite: boolean; message?: string } =
         body;
       fromSite === true && message && sendMessageFromSite(bot, message);
+    } else {
+      const { message, update_id } = req.body;
+      message &&
+        update_id &&
+        (await bot.handleUpdate(req.body as unknown as Update, res));
     }
-    await bot.handleUpdate(req.body as unknown as Update, res);
   } else {
     res.status(200).json('Listening to bot events...');
   }
