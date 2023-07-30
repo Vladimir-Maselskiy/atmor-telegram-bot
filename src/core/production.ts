@@ -44,6 +44,7 @@ export const production = async (
   //   res.status(200).json('Listening to bot events...');
   // }
   if (req.method === 'POST') {
+    console.log('1req.body1', req.body);
     await bot.handleUpdate(req.body as unknown as Update, res);
   } else {
     res.status(200).json('Listening to bot events...');
