@@ -1,10 +1,9 @@
-import { Telegraf, Markup, Context } from 'telegraf';
+import { Telegraf } from 'telegraf';
 
-import { about, logOut, signIn } from './commands';
+import { logOut, signIn } from './commands';
 import { message } from './messages';
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { development, production } from './core';
-import { COMMANDS } from './const/commands';
 
 const BOT_TOKEN = process.env.BOT_TOKEN || '';
 const ENVIRONMENT = process.env.NODE_ENV || '';

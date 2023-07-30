@@ -1,6 +1,5 @@
 import { Context } from 'telegraf';
-import { findOne } from '../mongo/findOne';
-import { deleteUser } from '../mongo/DeleteUser';
+import { deleteUser } from '../mongo/deleteUser';
 
 export const logOut = () => async (ctx: Context) => {
   const user = await deleteUser(ctx);
