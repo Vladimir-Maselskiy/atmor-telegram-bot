@@ -27,6 +27,8 @@ const production = async (
     const { fromSite, message }: { fromSite: boolean; message: string } = body;
 
     if (fromSite === true) {
+      console.log('fromSite', fromSite);
+      console.log('message', message);
       sendMessageFromSite(bot, message);
     } else {
       await bot.handleUpdate(req.body as unknown as Update, res);
