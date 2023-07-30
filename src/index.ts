@@ -1,6 +1,6 @@
 import { Telegraf, Markup, Context } from 'telegraf';
 
-import { about, signIn } from './commands';
+import { about, logOut, signIn } from './commands';
 import { message } from './messages';
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { development, production } from './core';
