@@ -17,8 +17,12 @@ export const message = () => async (ctx: Context) => {
     ctx.update.message.reply_to_message.text === 'Enter password:'
   ) {
     if (ctx.update.message.text === process.env.TELEGRAM_BOT_PASSWORD) {
-      addUserToDB(ctx);
-      ctx.reply('Підписку налаштовано');
+      const newUser = await addUserToDB(ctx);
+      if (newUser) {
+        ctx.reply('Підписку налаштовано');
+      } else {
+        ctx.reply('Щось пішло не так, спробуй ще раз пізніше');
+      }
     } else {
       ctx.reply('Пароль невірний');
       return;
