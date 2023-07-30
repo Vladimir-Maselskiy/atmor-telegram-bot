@@ -45,14 +45,14 @@ export const production = async (
   // }
 
   if (req.method === 'POST') {
-    // console.log('1req.body1', req.body);
-    // const body = JSON.parse(req.body);
-    // const {
-    //   fromSite,
-    //   message,
-    //   update_id,
-    // }: { fromSite?: boolean; message?: string; update_id?: Update } = body;
     await bot.handleUpdate(req.body as unknown as Update, res);
+    console.log('1req.body1', req.body);
+    const body = JSON.parse(req.body);
+    const {
+      fromSite,
+      message,
+      update_id,
+    }: { fromSite?: boolean; message?: string; update_id?: Update } = body;
   } else {
     res.status(200).json('Listening to bot events...');
   }
