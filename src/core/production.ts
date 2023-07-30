@@ -22,7 +22,7 @@ const production = async (
   }
 
   if (req.method === 'POST') {
-    console.log('fromSite', req.body.fromSite);
+    console.log('fromSite', req.body);
 
     if (req.body.fromSite === true) {
       console.log('fromSite : true');
