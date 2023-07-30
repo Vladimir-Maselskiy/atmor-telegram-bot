@@ -47,12 +47,12 @@ export const production = async (
   if (req.method === 'POST') {
     console.log('typeof req.body', typeof req.body);
     console.log('body', req.body);
-    // const body = JSON.parse(req.body);
-    // const {
-    //   fromSite,
-    //   message,
-    //   update_id,
-    // }: { fromSite?: boolean; message?: string; update_id?: Update } = body;
+    if (typeof req.body === 'string') {
+      const body = JSON.parse(req.body);
+      const { fromSite, message }: { fromSite: boolean; message?: string } =
+        body;
+      fromSite === true && message && sendMessageFromSite(bot, message);
+    }
     await bot.handleUpdate(req.body as unknown as Update, res);
   } else {
     res.status(200).json('Listening to bot events...');
