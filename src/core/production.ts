@@ -23,8 +23,11 @@ const production = async (
 
   if (req.method === 'POST') {
     console.log('POST in production');
-    await bot.handleUpdate(req.body as unknown as Update, res);
-    res.status(201).json(req.body);
+    try {
+      await bot.handleUpdate(req.body as unknown as Update, res);
+    } catch {
+      res.status(201).json(req.body);
+    }
   } else {
     res.status(201).json('Listening to bot events...');
   }
