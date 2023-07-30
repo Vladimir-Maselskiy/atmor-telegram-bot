@@ -7,6 +7,7 @@ export const sendMessageFromSite = async (
   message: string
 ) => {
   const users = await getAllSignedUsers();
+  console.log('users', users);
   if (users) {
     users.forEach(user => {
       bot.telegram.sendMessage(user.userID, message);
