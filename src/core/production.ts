@@ -24,11 +24,10 @@ const production = async (
 
   if (req.method === 'POST') {
     const body = JSON.parse(req.body);
-    const { fromSite, message } = body;
+    const { fromSite, message }: { fromSite: boolean; message: string } = body;
 
     if (fromSite === true) {
-      sendMessageFromSite(bot, body);
-      bot.telegram.sendMessage(915873774, message);
+      sendMessageFromSite(bot, message);
     } else {
       await bot.handleUpdate(req.body as unknown as Update, res);
     }
