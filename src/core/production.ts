@@ -22,7 +22,7 @@ export const production = async (
     await bot.telegram.setWebhook(`${VERCEL_URL}/api`);
   }
 
-  if (req.method === 'POST') {
+  if (req.method === 'POST' && req.body) {
     const body = JSON.parse(req.body);
     const { fromSite, message }: { fromSite: boolean; message: string } = body;
 
