@@ -22,15 +22,15 @@ const production = async (
   }
 
   if (req.method === 'POST') {
-    console.log('POST in production');
-    try {
-      console.log('req.body', req.body);
+    if (req.body.fromSite === true) {
+      console.log('fromSite : true');
+      bot.telegram.sendMessage(915873774, JSON.stringify(req.body));
+    } else {
       await bot.handleUpdate(req.body as unknown as Update, res);
-    } catch {
-      res.status(202).json(req.body);
     }
+    res.status(200).json(req.body);
   } else {
-    res.status(202).json('Listening to bot events...');
+    res.status(200).json('Listening to bot events...');
   }
 };
 export { production };
