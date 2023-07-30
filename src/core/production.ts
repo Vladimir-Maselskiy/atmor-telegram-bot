@@ -45,8 +45,8 @@ export const production = async (
   // }
 
   if (req.method === 'POST') {
-    console.log('1req.body1', req.body);
-    const body = JSON.parse(req.body);
+    console.log('typeof req.body', typeof req.body);
+    // const body = JSON.parse(req.body);
     // const {
     //   fromSite,
     //   message,
