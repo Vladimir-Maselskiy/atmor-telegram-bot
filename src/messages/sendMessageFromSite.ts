@@ -8,14 +8,12 @@ export const sendMessageFromSite = async (
 ) => {
   const users = await getAllSignedUsers();
   console.log('users', users);
-  //   if (users) {
-  //     users.forEach(user => {
-  //       bot.telegram.sendMessage(user.userID, message);
-  //     });
-  //   }
-  bot.telegram.sendMessage(915873774, 'test message');
+  if (users) {
+    users.forEach(user => {
+      bot.telegram.sendMessage(user.userID, message);
+    });
+  }
 
-  
   // Enable graceful stop
   process.once('SIGINT', () => bot.stop('SIGINT'));
   process.once('SIGTERM', () => bot.stop('SIGTERM'));
