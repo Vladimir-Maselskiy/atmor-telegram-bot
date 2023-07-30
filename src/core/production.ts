@@ -28,9 +28,10 @@ const production = async (
 
     if (fromSite === true) {
       console.log('fromSite', fromSite);
-      console.log('message', message);
       sendMessageFromSite(bot, message);
     } else {
+      console.log('fromSite', fromSite);
+      console.log('req.body', req.body);
       await bot.handleUpdate(req.body as unknown as Update, res);
     }
     res.status(200).json(req.body);
