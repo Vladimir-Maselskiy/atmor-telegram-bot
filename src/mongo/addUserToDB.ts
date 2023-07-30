@@ -15,8 +15,7 @@ export const addUserToDB = async (
       const { id: userID } = from;
       const user = await User.findOne({ userID });
       if (user) return;
-      const newUser = await User.create(getUserForDBFromCtx(ctx));
-      console.log('newUser', newUser);
+      return await User.create(getUserForDBFromCtx(ctx));
     }
   } catch (error) {
     console.log(error);
