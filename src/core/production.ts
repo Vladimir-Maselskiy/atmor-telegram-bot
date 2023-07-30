@@ -24,12 +24,17 @@ export const production = async (
 
   if (req.method === 'POST' && req.body) {
     const body = JSON.parse(req.body);
-    const { fromSite, message }: { fromSite: boolean; message: string } = body;
+    const {
+      fromSite,
+      message,
+      update,
+    }: { fromSite?: boolean; message?: string; update?: Update } = body;
 
-    if (fromSite === true) {
+    if (fromSite === true && message) {
       console.log('fromSite', fromSite);
       sendMessageFromSite(bot, message);
-    } else {
+    }
+    if (update) {
       console.log('fromSite', fromSite);
       console.log('req.body', req.body);
       await bot.handleUpdate(req.body as unknown as Update, res);
