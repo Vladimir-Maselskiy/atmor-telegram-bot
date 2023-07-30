@@ -9,6 +9,8 @@ const production = async (
   res: VercelResponse,
   bot: Telegraf<Context<Update>>
 ) => {
+  console.log('in production...');
+
   if (!VERCEL_URL) {
     throw new Error('VERCEL_URL is not set.');
   }
@@ -20,6 +22,7 @@ const production = async (
   }
 
   if (req.method === 'POST') {
+    console.log('POST in production');
     await bot.handleUpdate(req.body as unknown as Update, res);
     res.status(201).json(req.body);
   } else {
