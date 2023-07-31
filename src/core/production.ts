@@ -52,7 +52,8 @@ export const production = async (
       const { fromSite, message }: { fromSite: boolean; message?: string } =
         body;
       fromSite === true && message && sendMessageFromSite(bot, message);
-    } else {
+    }
+    if (typeof req.body === 'object') {
       const { message, update_id } = req.body;
       message &&
         update_id &&
