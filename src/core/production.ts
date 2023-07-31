@@ -29,7 +29,7 @@ export const production = async (
       const body = JSON.parse(req.body);
       const { fromSite, message }: { fromSite: boolean; message?: string } =
         body;
-      fromSite === true && message && sendMessageFromSite(bot, message);
+      fromSite === true && message && (await sendMessageFromSite(bot, message));
       res.status(201).json({ status: 'SENDED' });
     }
     if (typeof req.body === 'object') {
